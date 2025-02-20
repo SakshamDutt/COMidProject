@@ -66,6 +66,21 @@ itype={'lw':{'funct3':'010','opcode':'0000011'},
        'addi':{'funct3':'000','opcode':'0010011'},
        'jalr':{'funct3':'000','opcode':'1100111'}}
 
+btype={'beq':{'funct3':'000','opcode':'1100011'},
+       'bne':{'funct3':'001','opcode':'1100011'},
+       'blt':{'funct3':'100','opcode':'1100011'}}
+fi=open(r"C:\Users\supri\OneDrive\Desktop\CO project\source.txt",'r')
+dol={}
+ino=0
+for line in fi:
+    line.rstrip()
+    lt=line.split()
+    if lt[0] not in itype and lt[0] not in rtype and lt[0] not in btype and lt[0]!='sw' and lt[0]!='jal':
+        lt[0]=lt[0].rstrip(":")
+        dol[lt[0]]=ino
+    ino+=4
+fi.close()       
+
 f=open(r"C:\Users\supri\OneDrive\Desktop\CO project\source.txt","r")
 ft=open(r"C:\Users\supri\OneDrive\Desktop\CO project\bin.txt","w")
 for line in f:
