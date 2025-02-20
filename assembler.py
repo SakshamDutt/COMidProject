@@ -111,3 +111,18 @@ for line in f:
                 immd=imm(nl[2])    
             v=f'{immd}{riscv_registers[nl[1]]}{itype[lt[0]]['funct3']}{riscv_registers[nl[0]]}{itype[lt[0]]['opcode']}\n'    
             ft.write(v)
+    if lt[0]=='sw':
+        nlt=nl[1].split("(")
+        nlt[1]=nlt[1].rstrip(')')
+        ins=lt[0]
+        rs2=riscv_registers[nl[0]]
+        rs1=riscv_registers[nlt[1]]
+        immd=None
+        if nlt[0] in dol:
+            immd=imm(str(dol[nlt[0]]-cino))
+        else:
+            immd=imm(nlt[0])    
+        imm115=immd[:7]
+        imm40=immd[7:]
+        v=f'{imm115}{rs2}{rs1}010{imm40}0100011\n'
+        ft.write(v)    
