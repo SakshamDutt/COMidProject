@@ -83,6 +83,7 @@ fi.close()
 
 f=open(r"C:\Users\supri\OneDrive\Desktop\CO project\source.txt","r")
 ft=open(r"C:\Users\supri\OneDrive\Desktop\CO project\bin.txt","w")
+cino=0
 for line in f:
     line.rstrip()
     lt=line.split()
