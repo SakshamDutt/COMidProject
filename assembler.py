@@ -139,4 +139,17 @@ for line in f:
         rs2=riscv_registers[nl[1]]
         rs1=riscv_registers[nl[0]]
         v=f'{imm12}{imm105}{rs2}{rs1}{btype[lt[0]]['funct3']}{imm41}{imm11}{btype[lt[0]]['opcode']}\n'
-        ft.write(v)    
+        ft.write(v)
+    if lt[0]=='jal':
+        immd=None
+        if nl[1] in dol:
+            immd=imm20((dol[nl[1]]-cino)/2)
+        else:
+            immd=imm20(nl[1])    
+        immt20 = immd[0]       
+        imm101 = immd[-10:]   
+        imm11  = immd[-11]       
+        imm1912 = immd[-19:-11]    
+        rd=riscv_registers[nl[0]]
+        v=f'{immt20}{imm101}{imm11}{imm1912}{rd}1101111\n'
+        ft.write(v)
