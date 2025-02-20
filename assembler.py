@@ -125,4 +125,18 @@ for line in f:
         imm115=immd[:7]
         imm40=immd[7:]
         v=f'{imm115}{rs2}{rs1}010{imm40}0100011\n'
+        ft.write(v)   
+    if lt[0] in btype:
+        immd=None
+        if nl[2] in dol:
+            immd=imm(str(int((dol[nl[2]]-cino)/2)))
+        else:
+            immd=imm(nl[2])       
+        imm12=immd[0]
+        imm105=immd[-10:-4]
+        imm41=immd[-4:]
+        imm11=immd[-11]
+        rs2=riscv_registers[nl[1]]
+        rs1=riscv_registers[nl[0]]
+        v=f'{imm12}{imm105}{rs2}{rs1}{btype[lt[0]]['funct3']}{imm41}{imm11}{btype[lt[0]]['opcode']}\n'
         ft.write(v)    
