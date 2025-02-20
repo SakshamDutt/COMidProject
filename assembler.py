@@ -146,10 +146,11 @@ for line in f:
             immd=imm20((dol[nl[1]]-cino)/2)
         else:
             immd=imm20(nl[1])    
-        immt20 = immd[0]       
-        imm101 = immd[-10:]   
-        imm11  = immd[-11]       
-        imm1912 = immd[-19:-11]    
+        immt20=immd[0]       
+        imm101=immd[-10:]   
+        imm11=immd[-11]       
+        imm1912=immd[-19:-11]    
         rd=riscv_registers[nl[0]]
         v=f'{immt20}{imm101}{imm11}{imm1912}{rd}1101111\n'
         ft.write(v)
+    cino+=4    
